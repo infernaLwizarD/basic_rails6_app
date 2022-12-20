@@ -13,8 +13,6 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -28,6 +26,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 gem 'devise'
 gem 'pundit'
 gem 'discard', '~> 1.2'
+gem 'sidekiq', '>= 6', '< 7'
 
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false

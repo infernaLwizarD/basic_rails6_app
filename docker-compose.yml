@@ -10,18 +10,27 @@ services:
     ports:
       - ${POSTGRES_PORT:-5432}:5432
 
-  #  redis:
-  #    image: redis:7.0.5-alpine
-  #    command: redis-server
-  #    ports:
-  #      - ${REDIS_PORT:-6379}:6379
-  #    healthcheck:
-  #      test: redis-cli ping
-  #      interval: 10s
-  #      timeout: 5s
-  #      retries: 5
-  #    volumes:
-  #      - redis:/data
+  redis:
+    image: redis:7.0.5-alpine
+    volumes:
+      - redis:/data
+    command: redis-server
+    ports:
+      - ${REDIS_PORT:-6379}:6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  sidekiq:
+    depends_on:
+      - db
+      - redis
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
 
   web:
     build: .
@@ -32,9 +41,7 @@ services:
       - ${WEB_PORT:-3001}:3000
     depends_on:
       - db
-  #      - redis
-  #    environment:
-  #      - REDIS_URL_CACHING=redis://redis:6379/0
+      - sidekiq
 
   adminer:
     image: adminer:4.8.1
@@ -43,4 +50,4 @@ services:
 
 volumes:
   db: null
-#  redis: null
+  redis: null
