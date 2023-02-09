@@ -1,0 +1,47 @@
+<ul>
+  <li>
+    <a href="#" class="nav-link">
+      <span><%= current_user.username %></span>
+    </a>
+    <div>
+      <span>
+          <span><b>E-mail:</b><br><%= current_user.email %></span><br>
+          <span><b>Роль:</b><br><%#= current_user.role.label %></span><br>
+      </span>
+      <span style="padding-bottom: 10px;">
+          <div>
+              <div>
+                <%= link_to('Профиль', user_path(current_user)) %>
+              </div>
+              <div>
+                <%= link_to('Выйти', destroy_user_session_path, method: 'delete').html_safe %>
+              </div>
+          </div>
+      </span>
+    </div>
+  </li>
+</ul>
+
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Статистика</h1>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+  </div>
+</section>
+
+
+<div>
+  <div>
+    <h3 class="card-title">Пользователи</h3>
+  </div>
+  <div>
+    Всего: <%= User.all.size %>
+  </div>
+  <!--            <div class="card-footer">-->
+  <!--                The footer of the card-->
+  <!--            </div>-->
+</div>
