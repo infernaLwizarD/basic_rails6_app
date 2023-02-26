@@ -119,21 +119,9 @@ Lint/EmptyBlock:
   Exclude:
     - 'spec/factories/**/*'
 
-
-Metrics/BlockLength:
-  Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-    - '*.gemspec'
-
 Naming/FileName:
   Exclude:
     - lib/rubocop-rails.rb
-
-Metrics/ModuleLength:
-  Exclude:
-    - 'spec/**/*.rb'
 
 Performance/DeletePrefix:
   SafeMultiline: false
@@ -166,13 +154,19 @@ Metrics/AbcSize:
     - 'db/**/*'
 Metrics/BlockLength:
   Exclude:
-    #    - '**/*.builder'
+    - 'Rakefile'
+    - '**/*.rake'
     - 'spec/**/*'
+    - '*.gemspec'
+    - 'config/**/*'
 Metrics/MethodLength:
   Max: 30
   CountAsOne: ['array', 'hash', 'heredoc']
   Exclude:
     - 'db/**/*'
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -202,4 +196,6 @@ Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/**/*'
 Rails/I18nLocaleTexts:
+  Enabled: false
+Rails/OutputSafety:
   Enabled: false
