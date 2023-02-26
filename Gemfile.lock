@@ -66,6 +66,13 @@ GEM
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
+    better_html (2.0.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bindex (0.8.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
@@ -101,6 +108,13 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    erb_lint (0.3.1)
+      activesupport
+      better_html (>= 2.0.1)
+      parser (>= 2.7.1.4)
+      rainbow
+      rubocop
+      smart_properties
     erubi (1.11.0)
     execjs (2.8.1)
     factory_bot (6.2.1)
@@ -142,6 +156,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.16.3)
     msgpack (1.6.0)
     net-imap (0.3.2)
@@ -154,7 +169,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.13.10)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
@@ -268,6 +284,7 @@ GEM
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
+    smart_properties (1.17.0)
     spring (4.1.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -315,6 +332,7 @@ DEPENDENCIES
   devise
   discard (~> 1.2)
   dotenv-rails
+  erb_lint
   factory_bot_rails
   font-awesome-sass (~> 5.15.1)
   jbuilder (~> 2.7)
@@ -341,7 +359,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.1p31
 
 BUNDLED WITH
    2.3.26
