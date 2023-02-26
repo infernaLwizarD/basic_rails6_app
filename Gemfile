@@ -25,9 +25,9 @@ gem 'discard', '~> 1.2'
 gem 'dotenv-rails'
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'pundit'
 gem 'sidekiq', '>= 6', '< 7'
+gem 'turbolinks'
 
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
