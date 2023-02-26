@@ -1,0 +1,19 @@
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+      <li class="nav-item">
+        <a href='<%= users_path %>' class="nav-link<%= current_page?(users_path) ? ' active' : '' %>">
+          <%= icon('nav-icon fas', 'users') %>
+          <p>Пользователи</p>
+        </a>
+      </li>
+
+<!--      <li class="nav-item">-->
+<!--        <a href='<%#= path %>' class="nav-link<%#= current_page?(math_trainings_path) ? ' active' : '' %>">-->
+          <%#= icon('nav-icon fas', 'calculator') %>
+<!--          <p>Label</p>-->
+<!--        </a>-->
+<!--      </li>-->
+    </ul>
+</nav>
+<!-- /.sidebar-menu -->

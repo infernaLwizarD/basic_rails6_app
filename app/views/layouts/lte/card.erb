@@ -1,0 +1,36 @@
+<% title_container_class = 'title-block' if yield(:header_left).present? %>
+
+<div class="card <%= yield(:card_class) %>">
+    <% if yield(:title).present? %>
+        <div class="card-header <%= bg_class %>">
+            <div class="card-tools tools_left">
+                <% unless yield(:title).slice('&nbsp;') %>
+                    <div class="<%= title_container_class %>"><h3 class="card-title"><%= yield(:title) %></h3></div>
+                <% end %>
+                <!-- Buttons, labels, and many other things can be placed here! -->
+                <div style="float:left;"><%= yield(:header_left) %></div>
+            </div>
+            <div class="card-tools tools_right">
+                <!-- Buttons, labels, and many other things can be placed here! -->
+                <%= yield(:header_right) %>
+            </div>
+            <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+    <% end %>
+
+    <% if yield(:body).present? %>
+        <div class="card-body table-responsive p-0">
+            <%= yield(:body) %>
+        </div>
+        <!-- /.card-body -->
+    <% end %>
+
+    <% if yield(:footer).present? %>
+        <div class="card-footer <%= yield(:card_footer_class) %>">
+            <%= yield(:footer) %>
+        </div>
+        <!-- /.card-footer -->
+    <% end %>
+</div>
+<!-- /.card -->

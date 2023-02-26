@@ -17,13 +17,17 @@
     <%= yield :head %>
   <% end %>
 </head>
+</head>
 
-<body class="sidebar-mini text-monospace">
-<div id="main-container" class="wrapper">
-  <%= render "layouts/lte/header" %>
-  <%= render "layouts/lte/sidebar" %>
-  <%= render "layouts/lte/content" %>
-  <%= render "layouts/lte/footer" %>
+<body class="login-page text-monospace" style="height:100%;background-color:mediumpurple;">
+<div id="main-container" style="display:flex;justify-content:center;align-items:center;flex-direction:column;padding-top:12%;">
+  <div class="title-box">
+    <div style="text-align:center;color:white;font-size:1.5rem;" class="mb-4">
+      <h2>Basic Rails 6 app</h2>
+    </div>
+  </div>
+
+  <%= yield %>
 </div>
 </body>
 </html>
