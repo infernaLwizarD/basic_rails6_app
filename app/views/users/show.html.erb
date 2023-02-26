@@ -1,15 +1,49 @@
-<div>
-  <div>
-    <h3>Пользователь</h3>
+<%
+  @breadcrumbs = [
+    {
+      title: 'Пользователи',
+      path: users_path
+    },
+    {
+      title: @user.email,
+      path: user_path(@user),
+    },
+  ]
+%>
+
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title m-0">Пользователь</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+    </div>
   </div>
-  <div>
-    <div>
+
+  <div class="card-body">
+    <div class="form-group">
       <label>Имя пользователя</label>
       <div><%= @user.username %></div>
     </div>
-    <div>
+    <div class="form-group">
       <label>E-mail</label>
       <div><%= @user.email %></div>
     </div>
+    <div class="form-group">
+      <label>Роль</label>
+      <div><%= @user.user_role_label %></div>
+    </div>
+  </div>
+
+  <div class="card-footer ">
+    <% if policy(@user).update? %>
+      <%= link_to(icon('fas', 'edit', 'Редактировать'), edit_user_path(@user), class: 'btn btn-primary') %>
+    <% end %>
+
+    <%= draw_back_button(path: users_path) %>
+
+    <% if policy(@user).destroy? %>
+      <%= draw_delete_button(path: @user) %>
+    <% end %>
   </div>
 </div>
+

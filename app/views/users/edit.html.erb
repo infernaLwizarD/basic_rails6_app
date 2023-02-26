@@ -1,0 +1,14 @@
+<%
+  @breadcrumbs = [
+    {
+      title: 'Пользователи',
+      path: users_path
+    },
+    {
+      title: @user.email,
+      path: user_path(@user),
+    },
+  ]
+%>
+
+<%= render 'form', back_path: user_path(@user) %>
