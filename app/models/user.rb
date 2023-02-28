@@ -4,8 +4,8 @@ class User < ApplicationRecord
   # :lockable, :timeoutable, :omniauthable
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable
 
-  validates :username, :email, presence: true, uniqueness: true
-  validates :username, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }
+  validates :username, presence: true, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }, uniqueness: true
+  validates :role, presence: true
   validate :validate_username
 
   attr_writer :login
@@ -13,6 +13,7 @@ class User < ApplicationRecord
   before_save do
     username.downcase!
   end
+
 
   def login
     @login || username || email

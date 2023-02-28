@@ -7,19 +7,18 @@ class UsersController < ApplicationController
 
     @users = User.all
     @users_cnt = @users.count
-
     respond_with @users
   end
 
   def show
     @user.password = nil
-
     respond_with @user
   end
 
   def new
-    @user = User.new
+    authorize User
 
+    @user = User.new
     respond_with @user
   end
 
@@ -27,6 +26,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    authorize User
+
     @user = User.new(user_params)
     @user.save
 
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user].delete(:password) if params[:user][:password].blank?
-    attributes = %i[username email password]
+    attributes = %i[username email password role]
 
     if params[:action] == 'create'
       params[:user].delete(:password_confirmation) if params[:user][:password].blank?
