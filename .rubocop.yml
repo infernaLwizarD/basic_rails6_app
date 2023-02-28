@@ -118,6 +118,9 @@ Lint/UselessAccessModifier:
 Lint/EmptyBlock:
   Exclude:
     - 'spec/factories/**/*'
+Lint/UselessMethodDefinition:
+  Exclude:
+    - 'app/controllers/users/*'
 
 Naming/FileName:
   Exclude:
@@ -152,6 +155,7 @@ Metrics/AbcSize:
   Max: 30
   Exclude:
     - 'db/**/*'
+    - 'app/controllers/users/*'
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'

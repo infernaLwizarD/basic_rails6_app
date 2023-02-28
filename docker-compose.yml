@@ -43,6 +43,12 @@ services:
       - db
       - sidekiq
 
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
+
   adminer:
     image: adminer:4.8.1
     ports:
