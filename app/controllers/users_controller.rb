@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   def index
     authorize User
 
-    @users = User.all
-    @users_cnt = @users.count
+    users = User.all
+    @pagy, @users = pagy(users)
+
     respond_with @users
   end
 

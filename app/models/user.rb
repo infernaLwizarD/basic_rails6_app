@@ -14,7 +14,6 @@ class User < ApplicationRecord
     username.downcase!
   end
 
-
   def login
     @login || username || email
   end
