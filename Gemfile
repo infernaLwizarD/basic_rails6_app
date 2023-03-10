@@ -27,6 +27,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 gem 'jquery-rails'
 gem 'pagy', '~> 6.0'
 gem 'pundit'
+gem 'ransack'
 gem 'sidekiq', '>= 6', '< 7'
 gem 'turbolinks'
 

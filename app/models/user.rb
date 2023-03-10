@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include UserRansack
   include UserRoleEnum
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable

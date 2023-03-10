@@ -5,10 +5,8 @@ class UsersController < ApplicationController
   def index
     authorize User
 
-    users = User.all
-    @pagy, @users = pagy(users)
-
-    respond_with @users
+    @q = User.ransack(params[:q])
+    @pagy, @users = pagy(@q.result)
   end
 
   def show
