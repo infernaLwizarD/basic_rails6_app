@@ -8,7 +8,7 @@
     </div>
 
     <div class="card-body">
-      <%= render "users/shared/error_messages", resource: @user %>
+      <%= render "web/users/shared/error_messages", resource: @user %>
       <div class="form-group">
         <%= form.label :username, "Имя пользователя" %>
         <%= form.text_field :username, class: "form-control" %>

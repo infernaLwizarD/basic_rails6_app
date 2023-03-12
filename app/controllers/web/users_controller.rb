@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Web::UsersController < Web::ApplicationController
   respond_to :html, :json
   before_action :find_and_authorize_user, except: %i[new create index]
 
