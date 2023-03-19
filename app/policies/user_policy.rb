@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.admin?
+        scope.all
+      else
+        scope.kept
+      end
     end
   end
 
@@ -18,14 +22,14 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    if user.admin?
-      true
-    else
-      record.id == user.id
-    end
+    record.kept? && if user.admin?
+                      true
+                    else
+                      record.id == user.id
+                    end
   end
 
   def destroy?
-    user.admin?
+    record.kept? && user.admin?
   end
 end

@@ -5,7 +5,7 @@ class Web::UsersController < Web::ApplicationController
   def index
     authorize User
 
-    @q = User.ransack(params[:q])
+    @q = policy_scope(User).ransack(params[:q])
     @pagy, @users = pagy(@q.result)
   end
 
@@ -42,8 +42,9 @@ class Web::UsersController < Web::ApplicationController
   end
 
   def destroy
-    @user.destroy
-    respond_with @user
+    @user.discard
+    flash[:notice] = 'Пользователь удалён'
+    redirect_to users_path
   end
 
   private

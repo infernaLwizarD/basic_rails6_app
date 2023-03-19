@@ -32,7 +32,13 @@
 
   <section class="content">
     <div class="container-fluid">
-      <%#= render 'flash' %>
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-<%= type == 'notice' ? 'info' : 'danger' %>" role="alert">
+          <span class="h5"><i class="icon fas fa-<%= type == 'notice' ? 'info' : 'exclamation-triangle' %>"></i></span>
+          <%= msg %>
+        </div>
+      <% end %>
+
       <%= yield %>
       <div class="row"></div>
     </div>

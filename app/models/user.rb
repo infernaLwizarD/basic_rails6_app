@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include UserRansack
   include UserRoleEnum
+  include Discard::Model
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :omniauthable
   devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable
@@ -10,6 +11,15 @@ class User < ApplicationRecord
   validate :validate_username
 
   attr_writer :login
+
+  scope :by_discarded, lambda { |v|
+    case v
+    when 'active'
+      where(discarded_at: nil)
+    when 'discarded'
+      where.not(discarded_at: nil)
+    end
+  }
 
   before_save do
     username.downcase!

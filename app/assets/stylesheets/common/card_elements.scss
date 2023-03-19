@@ -1,9 +1,14 @@
 .pagination {
   margin: 0;
 }
-.col-auto {
-  flex: 0 0 auto;
-  width: auto;
+.discarded-field {
+  min-width: 140px;
+}
+.role-field {
+  min-width: 171px;
+}
+.search-field {
+  min-width: 220px;
 }
 .table th, .table td {
   padding: 0.5rem;

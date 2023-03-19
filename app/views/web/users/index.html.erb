@@ -13,20 +13,20 @@
     <div class="card">
       <div class="card-header accent-purple">
         <div class="row">
-          <div class="col align-items-center display-flex">
-            <div class="col-auto">
-              <%== pagy_bootstrap_nav(@pagy) %>
-            </div>
-            <div class="col-auto">
+          <div class="col col-md-11">
+            <div class="row align-items-center display-flex">
+              <div class="m-1">
+                <%== pagy_bootstrap_nav(@pagy) %>
+              </div>
               <%= render "shared/search_form.html.erb", q: @q %>
-            </div>
-            <div class="col-auto">
-              <% if policy(User).create? %>
-                <div><%= draw_new_button(path: new_user_path(), button: true) %></div>
-              <% end %>
+              <div class="m-1">
+                <% if policy(User).create? %>
+                  <div><%= draw_new_button(path: new_user_path(), button: true) %></div>
+                <% end %>
+              </div>
             </div>
           </div>
-          <div class="col">
+          <div class="col col-md-1">
             <div class="card-tools float-right">
               <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
             </div>
