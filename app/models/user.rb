@@ -4,7 +4,8 @@ class User < ApplicationRecord
   include Discard::Model
   # Include default devise modules. Others available are:
   # :timeoutable, :omniauthable
-  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable, :lockable
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable,
+         :lockable
 
   validates :username, presence: true, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }, uniqueness: true
   validates :role, presence: true

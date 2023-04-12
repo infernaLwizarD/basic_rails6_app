@@ -62,14 +62,21 @@ Naming/PredicateName:
 Naming/InclusiveLanguage:
   CheckComments: false
 
+Naming/FileName:
+  Exclude:
+    - lib/rubocop-rails.rb
+
+
 Rails:
   Enabled: true
+
 
 Style/FormatStringToken:
   # Because we parse a lot of source codes from strings. Percent arrays
   # look like unannotated format string tokens to this cop.
   Exclude:
     - spec/**/*
+
 
 Layout/HashAlignment:
   EnforcedHashRocketStyle:
@@ -105,32 +112,35 @@ Layout/RedundantLineBreak:
 Layout/TrailingWhitespace:
   AllowInHeredoc: true
 
+
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'spec/**/*.rb'
+
 Lint/InterpolationCheck:
   Exclude:
     - 'spec/**/*.rb'
+
 Lint/UselessAccessModifier:
   MethodCreatingMethods:
     - 'def_matcher'
     - 'def_node_matcher'
+
 Lint/EmptyBlock:
   Exclude:
     - 'spec/factories/**/*'
+
 Lint/UselessMethodDefinition:
   Exclude:
     - 'app/controllers/web/users/*'
 
-Naming/FileName:
-  Exclude:
-    - lib/rubocop-rails.rb
 
 Performance/DeletePrefix:
   SafeMultiline: false
 
 Performance/DeleteSuffix:
   SafeMultiline: false
+
 
 RSpec:
   Language:
@@ -144,11 +154,23 @@ RSpec:
 RSpec/FactoryBot/CreateList:
   Enabled: false
 
-RSpec/PredicateMatcher:
-  EnforcedStyle: explicit
+#RSpec/PredicateMatcher:
+#  EnforcedStyle: explicit
 
 RSpec/NestedGroups:
   Max: 7
+
+RSpec/ContextWording:
+  Exclude:
+    - 'spec/features/**/*'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/features/**/*'
 
 
 Metrics/AbcSize:
@@ -156,6 +178,7 @@ Metrics/AbcSize:
   Exclude:
     - 'db/**/*'
     - 'app/controllers/web/users/*'
+
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
@@ -163,26 +186,35 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - '*.gemspec'
     - 'config/**/*'
+
 Metrics/MethodLength:
   Max: 30
   CountAsOne: ['array', 'hash', 'heredoc']
   Exclude:
     - 'db/**/*'
+
 Metrics/ModuleLength:
   Exclude:
     - 'spec/**/*.rb'
 
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
 Style/Documentation:
   Enabled: false
+
 Style/EmptyMethod:
   EnforcedStyle: expanded
+
 Style/ClassAndModuleChildren:
   Enabled: false
+
 Style/GlobalStdStream:
   Exclude:
     - 'config/**/*'
+
+
 Layout/LineLength:
   Exclude:
     - 'config/**/*'
@@ -190,16 +222,22 @@ Layout/LineLength:
 
 Rails/ApplicationRecord:
   Enabled: false
+
 Rails/ApplicationController:
   Enabled: false
+
 Rails/BulkChangeTable:
   Enabled: false
+
 Rails/RedundantPresenceValidationOnBelongsTo:
   Enabled: false
+
 Rails/SkipsModelValidations:
   Exclude:
     - 'db/migrate/**/*'
+
 Rails/I18nLocaleTexts:
   Enabled: false
+
 Rails/OutputSafety:
   Enabled: false

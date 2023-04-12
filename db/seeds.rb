@@ -10,8 +10,8 @@ def create_admin
   User.create!(
     role: 'admin',
     username: 'admin',
-    password: ENV['DB_PASSWORD'],
-    email: "admin@admin.admin",
+    password: ENV.fetch('DB_PASSWORD', nil),
+    email: 'admin@admin.admin',
     confirmed_at: Time.zone.now
   )
 end
