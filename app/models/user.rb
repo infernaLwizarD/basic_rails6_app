@@ -3,8 +3,8 @@ class User < ApplicationRecord
   include UserRoleEnum
   include Discard::Model
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :omniauthable
-  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable
+  # :timeoutable, :omniauthable
+  devise :database_authenticatable, :confirmable, :recoverable, :registerable, :trackable, :validatable, :rememberable, :lockable
 
   validates :username, presence: true, format: { with: /^[a-zA-Z0-9_.]*$/, multiline: true }, uniqueness: true
   validates :role, presence: true

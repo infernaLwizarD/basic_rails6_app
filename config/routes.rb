@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       sessions: 'web/users/sessions',
       registrations: 'web/users/registrations',
       passwords: 'web/users/passwords',
-      confirmations: 'web/users/confirmations'
+      confirmations: 'web/users/confirmations',
+      unlocks: 'web/users/unlocks'
     }
     scope '/admin' do
       resources :users, except: %i[show edit update destroy]
