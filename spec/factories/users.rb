@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     username { Faker::Internet.unique.username(separators: %w[_]) }
-    password { '1q2w3e4r' }
+    password { Faker::Internet.password(min_length: 6) }
     role { 'user' }
     confirmed_at { Time.zone.now }
     email { Faker::Internet.unique.email }
