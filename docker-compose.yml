@@ -32,9 +32,21 @@ services:
     volumes:
       - .:/app
 
+  selenium_chrome:
+    image: selenium/standalone-chrome:112.0-20230421
+    shm_size: 2gb
+    logging:
+      driver: none
+#    volumes:
+#      - /dev/shm:/dev/shm
+    ports:
+      - 5900:5900
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      SELENIUM_REMOTE_URL: ${SELENIUM_REMOTE_URL}
     volumes:
       - .:/app
     ports:
@@ -42,6 +54,7 @@ services:
     depends_on:
       - db
       - sidekiq
+      - selenium_chrome
 
   mailcatcher:
     image: schickling/mailcatcher
