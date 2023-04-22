@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     scope '/admin' do
       resources :users, except: %i[show edit update destroy]
     end
-    resources :users, only: %i[show edit update destroy]
+    resources :users, only: %i[show edit update destroy] do
+      member do
+        post :lock
+        post :unlock
+      end
+    end
     #----#
   end
 

@@ -6,8 +6,5 @@
     <div class="col p-1">
       <%= f.select(:by_discarded, [['Активные', 'active'], ['Удалённые', 'discarded']], { include_blank: '[Все]', selected: params.dig(:q, :by_discarded) }, { class: 'discarded-field float-left form-control', onchange: 'this.form.submit();' }) %>
     </div>
-    <div class="col p-1">
-      <%= f.select(:role_eq, User.user_role_collection, { include_blank: '[Все]' }, {class: "role-field float-left form-control", onchange: 'this.form.submit();' }) %>
-    </div>
   </div>
 <% end %>

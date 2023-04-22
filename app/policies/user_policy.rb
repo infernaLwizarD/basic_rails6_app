@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.kept
+        scope.by_state('active')
       end
     end
   end
@@ -30,6 +30,14 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
+    record.kept? && user.admin?
+  end
+
+  def lock?
+    record.kept? && user.admin?
+  end
+
+  def unlock?
     record.kept? && user.admin?
   end
 end

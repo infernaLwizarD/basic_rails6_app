@@ -18,7 +18,7 @@
               <div class="m-1">
                 <%== pagy_bootstrap_nav(@pagy) %>
               </div>
-              <%= render "shared/search_form.html.erb", q: @q %>
+              <%= render 'search_form.html.erb', q: @q %>
               <div class="m-1">
                 <% if policy(User).create? %>
                   <div><%= draw_new_button(path: new_user_path(), button: true) %></div>
@@ -46,11 +46,18 @@
           </thead>
           <tbody>
           <% @users.each do |user| %>
+            <%
+              td_class = if user.locked_at?
+                           ' class=bg-warning'
+                         elsif user.discarded?
+                           ' class=bg-danger'
+                         end
+            %>
             <tr>
-              <td><%= link_to user.id, user %></td>
-              <td><%= link_to user.username, user %></td>
-              <td><%= link_to user.email, user %></td>
-              <td><%= link_to user.user_role_label, user %></td>
+              <td<%= td_class %>><%= link_to user.id, user %></td>
+              <td<%= td_class %>><%= link_to user.username, user %></td>
+              <td<%= td_class %>><%= link_to user.email, user %></td>
+              <td<%= td_class %>><%= link_to user.user_role_label, user %></td>
             </tr>
           <% end %>
           </tbody>

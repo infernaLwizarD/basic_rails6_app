@@ -47,6 +47,18 @@ class Web::UsersController < Web::ApplicationController
     redirect_to users_path
   end
 
+  def lock
+    @user.lock_access!(send_instructions: false)
+    flash[:notice] = 'Пользователь заблокирован'
+    respond_with @user
+  end
+
+  def unlock
+    @user.unlock_access!
+    flash[:notice] = 'Пользователь разблокирован'
+    respond_with @user
+  end
+
   private
 
   def find_and_authorize_user

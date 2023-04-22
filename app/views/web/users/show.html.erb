@@ -34,9 +34,16 @@
     </div>
   </div>
 
-  <div class="card-footer ">
+  <div class="card-footer">
     <% if policy(@user).update? %>
-      <%= link_to(icon('fas', 'edit', 'Редактировать'), edit_user_path(@user), class: 'btn btn-primary') %>
+      <%= draw_edit_button(path: edit_user_path(@user)) %>
+    <% end %>
+
+    <% if policy(@user).lock? && !@user.locked_at? %>
+      <%= link_to(icon('fas', 'lock', 'Заблокировать'), lock_user_path(@user), method: :post, class: 'btn btn-warning') %>
+    <% end %>
+    <% if policy(@user).unlock? && @user.locked_at? %>
+      <%= link_to(icon('fas', 'unlock', 'Разблокировать'), unlock_user_path(@user), method: :post, class: 'btn btn-warning') %>
     <% end %>
 
     <%= draw_back_button(path: users_path) %>

@@ -13,10 +13,12 @@ class User < ApplicationRecord
 
   attr_writer :login
 
-  scope :by_discarded, lambda { |v|
+  scope :by_state, lambda { |v|
     case v
     when 'active'
-      where(discarded_at: nil)
+      where(discarded_at: nil, locked_at: nil)
+    when 'locked'
+      where(discarded_at: nil).where.not(locked_at: nil)
     when 'discarded'
       where.not(discarded_at: nil)
     end
