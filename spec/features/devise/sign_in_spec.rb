@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Пользователь входит в систему' do
+RSpec.describe 'Пользователь входит в систему', type: :system do
   before do
     visit new_user_session_path
   end

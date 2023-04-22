@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Восстановление пароля' do
+RSpec.describe 'Восстановление пароля', type: :system do
   before do
     visit root_path
     click_on 'Забыли пароль?'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Разблокировка аккаунта' do
+RSpec.describe 'Разблокировка аккаунта', type: :system do
   before do
     visit root_path
     click_on 'Аккаунт заблокирован?'

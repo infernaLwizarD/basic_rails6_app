@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Отправка инструкций по подтверждению' do
+RSpec.describe 'Отправка инструкций по подтверждению', type: :system do
   before do
     visit root_path
     click_on 'Аккаунт не подтверждён?'

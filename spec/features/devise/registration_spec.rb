@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Регистрация' do
+RSpec.describe 'Регистрация', type: :system do
   new_password = Faker::Internet.password(min_length: 6)
 
   before do
