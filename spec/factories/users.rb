@@ -4,6 +4,7 @@ FactoryBot.define do
     password { Faker::Internet.password(min_length: 6) }
     role { 'user' }
     confirmed_at { Time.zone.now }
+    locked_at { nil }
     email { Faker::Internet.unique.email }
 
     trait :admin do

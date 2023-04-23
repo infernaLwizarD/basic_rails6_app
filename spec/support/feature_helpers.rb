@@ -1,8 +1,8 @@
 module FeatureHelpers
-  def sign_in(user)
-    visit new_user_session_path
-    fill_in 'Логин', with: user.username
-    fill_in 'Пароль', with: user.password
+  def sign_in(options = {})
+    visit new_user_session_path if options[:visit]
+    fill_in 'Логин', with: options[:login]
+    fill_in 'Пароль', with: options[:password]
     click_on 'Войти'
   end
 end
