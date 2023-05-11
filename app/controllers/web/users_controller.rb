@@ -59,6 +59,12 @@ class Web::UsersController < Web::ApplicationController
     respond_with @user
   end
 
+  def restore
+    @user.undiscard!
+    flash[:notice] = 'Пользователь восстановлен'
+    respond_with @user
+  end
+
   private
 
   def find_and_authorize_user

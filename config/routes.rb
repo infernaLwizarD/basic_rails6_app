@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       member do
         post :lock
         post :unlock
+        post :restore
       end
     end
     #----#

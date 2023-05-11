@@ -38,16 +38,18 @@
     <% if policy(@user).update? %>
       <%= draw_edit_button(path: edit_user_path(@user)) %>
     <% end %>
-
-    <% if policy(@user).lock? && !@user.locked_at? %>
+    <% if policy(@user).lock? %>
       <%= link_to(icon('fas', 'lock', 'Заблокировать'), lock_user_path(@user), method: :post, class: 'btn btn-warning') %>
     <% end %>
-    <% if policy(@user).unlock? && @user.locked_at? %>
+    <% if policy(@user).unlock? %>
       <%= link_to(icon('fas', 'unlock', 'Разблокировать'), unlock_user_path(@user), method: :post, class: 'btn btn-warning') %>
     <% end %>
 
     <%= draw_back_button(path: users_path) %>
 
+    <% if policy(@user).restore? %>
+      <%= link_to(icon('fas', 'trash-restore', 'Восстановить'), restore_user_path(@user), method: :post, class: 'btn btn-warning float-right') %>
+    <% end %>
     <% if policy(@user).destroy? %>
       <%= draw_delete_button(path: @user) %>
     <% end %>
