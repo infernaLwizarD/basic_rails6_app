@@ -1,14 +1,14 @@
 <%= search_form_for q, class: 'display-flex, ml-2 mr-2' do |f| %>
   <div class="row">
     <div class="col p-1">
-      <%= f.search_field :search_cont, value: params.dig(:q, :search_cont), placeholder: "Поиск", class: 'search-field float-left form-control' %>
+      <%= f.search_field :search_cont, value: params.dig(:q, :search_cont), placeholder: "Поиск", class: 'search-field float-left form-control form-control-sm' %>
     </div>
     <% if current_user.admin? %>
       <div class="col p-1">
-        <%= f.select(:by_state, [['Активные', 'active'], ['Заблокированные', 'locked'], ['Удалённые', 'discarded']], { include_blank: '[Все]', selected: params.dig(:q, :by_state) }, { class: 'discarded-field float-left form-control', onchange: 'this.form.submit();' }) %>
+        <%= f.select(:by_state, [['Активные', 'active'], ['Заблокированные', 'locked'], ['Удалённые', 'discarded']], { include_blank: '[Все]', selected: params.dig(:q, :by_state) }, { class: 'discarded-field float-left form-control form-control-sm', onchange: 'this.form.submit();' }) %>
       </div>
       <div class="col p-1">
-        <%= f.select(:role_eq, User.user_role_collection, { include_blank: '[Все]' }, {class: "role-field float-left form-control", onchange: 'this.form.submit();' }) %>
+        <%= f.select(:role_eq, User.user_role_collection, { include_blank: '[Все]' }, {class: "role-field float-left form-control form-control-sm", onchange: 'this.form.submit();' }) %>
       </div>
     <% end %>
   </div>
