@@ -5,6 +5,15 @@ RSpec.describe 'Пользователь входит в систему', type: 
     visit root_path
   end
 
+  context 'Администратор' do
+    let(:user) { create(:user, :admin) }
+
+    it 'входит в систему' do
+      sign_in(login: user.username, password: user.password)
+      expect(page).to have_content I18n.t('devise.sessions.signed_in')
+    end
+  end
+
   context 'Зарегистрированный пользователь' do
     let(:user) { create(:user, :simple_user) }
 
