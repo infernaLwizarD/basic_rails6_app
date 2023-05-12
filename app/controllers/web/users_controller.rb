@@ -29,7 +29,7 @@ class Web::UsersController < Web::ApplicationController
 
     @user = User.new(user_params)
     @user.save
-
+    flash[:notice] = 'Пользователь успешно создан'
     respond_with @user
   end
 

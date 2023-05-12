@@ -31,7 +31,7 @@
       </div>
       <% unless @user.persisted? %>
         <div class="form-group">
-          <%= form.label "Подтверждение пароля" %>
+          <%= form.label :password_confirmation, "Подтверждение пароля" %>
           <%= form.password_field :password_confirmation, autocomplete: "off", class: "form-control form-control-sm" %>
         </div>
       <% end %>
