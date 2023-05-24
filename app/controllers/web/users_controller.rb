@@ -35,6 +35,7 @@ class Web::UsersController < Web::ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:notice] = 'Пользователь отредактирован' if @user.saved_changes?
       redirect_to action: :show
     else
       render :edit
@@ -47,6 +48,12 @@ class Web::UsersController < Web::ApplicationController
     redirect_to users_path
   end
 
+  def restore
+    @user.undiscard!
+    flash[:notice] = 'Пользователь восстановлен'
+    respond_with @user
+  end
+
   def lock
     @user.lock_access!(send_instructions: false)
     flash[:notice] = 'Пользователь заблокирован'
@@ -56,12 +63,6 @@ class Web::UsersController < Web::ApplicationController
   def unlock
     @user.unlock_access!
     flash[:notice] = 'Пользователь разблокирован'
-    respond_with @user
-  end
-
-  def restore
-    @user.undiscard!
-    flash[:notice] = 'Пользователь восстановлен'
     respond_with @user
   end
 

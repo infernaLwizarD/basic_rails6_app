@@ -30,18 +30,18 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.kept? && user.admin?
-  end
-
-  def lock?
-    record.kept? && !record.locked_at? && user.admin?
-  end
-
-  def unlock?
-    record.kept? && record.locked_at? && user.admin?
+    record.kept? && user.admin? && record.id != user.id
   end
 
   def restore?
-    record.discarded? && user.admin?
+    record.discarded? && user.admin? && record.id != user.id
+  end
+
+  def lock?
+    record.kept? && !record.locked_at? && user.admin? && record.id != user.id
+  end
+
+  def unlock?
+    record.kept? && record.locked_at? && user.admin? && record.id != user.id
   end
 end
