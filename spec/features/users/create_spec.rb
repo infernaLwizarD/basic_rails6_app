@@ -1,13 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Создание нового пользователя', js: true, type: :system do
+  before do
+    logged_as(user)
+    visit root_path
+    find('li p', text: 'Пользователи').click
+  end
+
   context 'Администратор' do
     let(:user) { create(:user, :admin) }
 
     it 'создаёт пользователя' do
-      sign_in(login: user.username, password: user.password, visit: true)
-      find('li p', text: 'Пользователи').click
-
       new_password = Faker::Internet.password(min_length: 6)
       click_on 'Добавить', match: :first
 
@@ -26,8 +29,6 @@ RSpec.describe 'Создание нового пользователя', js: tru
     let(:user) { create(:user, :simple_user) }
 
     it 'не создаёт пользователя' do
-      sign_in(login: user.username, password: user.password, visit: true)
-      find('li p', text: 'Пользователи').click
       expect(page).to have_css('h1', text: 'Пользователи')
       expect(page).not_to have_content 'Добавить'
     end
