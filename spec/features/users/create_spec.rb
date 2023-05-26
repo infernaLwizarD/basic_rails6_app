@@ -26,7 +26,7 @@ RSpec.describe 'Создание нового пользователя', js: tru
   end
 
   context 'Обычный пользователь' do
-    let(:user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
 
     it 'не создаёт пользователя' do
       expect(page).to have_css('h1', text: 'Пользователи')

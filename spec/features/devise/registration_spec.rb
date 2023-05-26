@@ -8,7 +8,7 @@ RSpec.describe 'Регистрация', type: :system do
   end
 
   context 'Зарегистрированный пользователь' do
-    let(:user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
 
     it 'проходит регистрацию' do
       click_on 'Регистрация'

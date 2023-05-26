@@ -3,7 +3,8 @@ FactoryBot.define do
     username { Faker::Internet.unique.username(separators: %w[_]) }
     password { Faker::Internet.password(min_length: 6) }
     role { 'user' }
-    confirmed_at { Time.zone.now }
+    created_at { 2.days.ago }
+    confirmed_at { 1.day.ago }
     locked_at { nil }
     email { Faker::Internet.unique.email }
 
@@ -11,8 +12,14 @@ FactoryBot.define do
       role { 'admin' }
     end
 
-    trait :simple_user do
-      role { 'user' }
+    trait :discarded_user do
+      discarded_at { 1.hour.ago }
     end
+
+    trait :locked_user do
+      locked_at { 1.hour.ago }
+    end
+
+    to_create { |instance| instance.save(validate: false) }
   end
 end

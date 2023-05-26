@@ -11,8 +11,8 @@ RSpec.describe 'Модуль Lockable', type: :system do
     end
 
     context 'Зарегистрированный пользователь' do
-      let(:user) { create(:user, :simple_user) }
-      let(:locked_user) { create(:user, :simple_user, locked_at: Time.zone.now) }
+      let(:user) { create(:user) }
+      let(:locked_user) { create(:user, locked_at: Time.zone.now) }
 
       it 'разблокирует заблокированный аккаунт' do
         fill_in 'Email', with: locked_user.email
@@ -42,7 +42,7 @@ RSpec.describe 'Модуль Lockable', type: :system do
 
   describe 'Блокировка аккаунта' do
     context 'Зарегистрированный пользователь' do
-      let(:user) { create(:user, :simple_user) }
+      let(:user) { create(:user) }
 
       it 'блокирует аккаунт после 20 попыток входа с неправильным паролем' do
         login = user.username

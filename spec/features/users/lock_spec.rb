@@ -16,8 +16,8 @@ RSpec.describe 'Блокировка пользователя', js: true, type: 
 
   context 'Администратор' do
     let(:user) { create(:user, :admin) }
-    let!(:locking_user) { create(:user, :simple_user) }
-    let!(:locked_user) { create(:user, :simple_user, locked_at: Time.zone.now) }
+    let!(:locking_user) { create(:user) }
+    let!(:locked_user) { create(:user, :locked_user) }
 
     it 'блокирует пользователя' do
       find(:css, '#users-table').click_link(locking_user.username)
@@ -39,8 +39,8 @@ RSpec.describe 'Блокировка пользователя', js: true, type: 
   end
 
   context 'Обычный пользователь' do
-    let(:user) { create(:user, :simple_user) }
-    let!(:some_user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
+    let!(:some_user) { create(:user) }
 
     it 'не может заблокировать других пользователей' do
       find(:css, '#users-table').click_link(some_user.username)

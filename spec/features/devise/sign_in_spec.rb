@@ -15,7 +15,7 @@ RSpec.describe 'Пользователь входит в систему', type: 
   end
 
   context 'Зарегистрированный пользователь' do
-    let(:user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
 
     it 'входит в систему' do
       sign_in(login: user.username, password: user.password)

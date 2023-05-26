@@ -7,7 +7,7 @@ RSpec.describe 'Восстановление пароля', type: :system do
   end
 
   context 'Зарегистрированный пользователь' do
-    let(:user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
 
     it 'восстанавливает пароль' do
       fill_in 'Email', with: user.email

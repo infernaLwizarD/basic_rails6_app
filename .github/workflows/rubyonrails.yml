@@ -16,8 +16,6 @@ jobs:
     services:
       postgres:
         image: postgres:13.9-alpine
-        #        volumes:
-        #          - postgres:/var/lib/postgresql/data
         env:
           POSTGRES_PASSWORD: 1q2w3e4r
         ports:
@@ -31,7 +29,6 @@ jobs:
         image: redis:7.0.5-alpine
         volumes:
           - redis:/data
-        # command: redis-server
         ports:
           - 6379:6379
         options: >-
@@ -66,11 +63,12 @@ jobs:
         run: bundle exec rails db:prepare
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec
+        run: bundle exec rspec --order=42 --seed 666666
       - name: Upload screenshots
         uses: actions/upload-artifact@v3.1.2
         if: failure()
         with:
+          name: screenshots
           path: tmp/screenshots
 
   lint:

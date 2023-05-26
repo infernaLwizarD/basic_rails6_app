@@ -37,7 +37,7 @@ RSpec.describe 'Редактирование пользователя', js: true
 
   context 'Администратор' do
     let(:user) { create(:user, :admin) }
-    let!(:some_user) { create(:user, :simple_user) }
+    let!(:some_user) { create(:user) }
 
     context 'свой профиль' do
       let(:edited_user) { user }
@@ -53,8 +53,8 @@ RSpec.describe 'Редактирование пользователя', js: true
   end
 
   context 'Обычный пользователь' do
-    let(:user) { create(:user, :simple_user) }
-    let!(:some_user) { create(:user, :simple_user) }
+    let(:user) { create(:user) }
+    let!(:some_user) { create(:user) }
 
     it 'не может добавлять и редактировать других пользователей' do
       expect(page).not_to have_content 'Добавить'

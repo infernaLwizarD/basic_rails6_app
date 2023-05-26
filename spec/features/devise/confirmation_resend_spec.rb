@@ -7,8 +7,8 @@ RSpec.describe 'Отправка инструкций по подтвержде�
   end
 
   context 'Зарегистрированный пользователь' do
-    let(:user) { create(:user, :simple_user) }
-    let(:new_user) { create(:user, :simple_user, confirmed_at: nil) }
+    let(:user) { create(:user) }
+    let(:new_user) { create(:user, confirmed_at: nil) }
 
     it 'отправляет запрос на инструкцию с неподтверждённым аккаунтом' do
       fill_in 'Email', with: new_user.email
