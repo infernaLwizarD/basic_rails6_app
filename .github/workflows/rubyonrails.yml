@@ -1,0 +1,91 @@
+# This workflow uses actions that are not certified by GitHub.  They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+#
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:13.9-alpine
+        #        volumes:
+        #          - postgres:/var/lib/postgresql/data
+        env:
+          POSTGRES_PASSWORD: 1q2w3e4r
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7.0.5-alpine
+        volumes:
+          - redis:/data
+        # command: redis-server
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      selenium_chrome:
+        image: selenium/standalone-chrome:112.0-20230421
+        ports:
+          - 4444:4444
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      DB_USER: postgres
+      DB_PASSWORD: 1q2w3e4r
+      POSTGRES_PORT: 5234
+      WEB_PORT: 3001
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+      # Add or replace database setup steps here
+      - name: Set up database schema
+        run: bundle exec rails db:prepare
+      # Add or replace test runners here
+      - name: Run tests
+        run: bundle exec rspec
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3.1.2
+        if: failure()
+        with:
+          path: tmp/screenshots
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+        with:
+          bundler-cache: true
+      # Add or replace any other lints here
+      #      - name: Security audit dependencies
+      #        run: bin/bundler-audit --update
+      #      - name: Security audit application code
+      #        run: bin/brakeman -q -w2
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel
