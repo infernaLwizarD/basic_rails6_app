@@ -4,7 +4,10 @@ RSpec.describe 'Создание нового пользователя', js: tru
   before do
     logged_as(user)
     visit root_path
-    find('li p', text: 'Пользователи').click
+
+    within('.main-sidebar') do
+      click_link('Пользователи')
+    end
   end
 
   context 'Администратор' do

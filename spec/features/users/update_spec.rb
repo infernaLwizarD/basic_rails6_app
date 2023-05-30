@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.shared_examples 'edit_user' do
   it 'успешно редактирует' do
-    find(:css, '#users-table').click_link(edited_user.username)
+    within('#users-table') do
+      expect(page).to have_content(edited_user.username)
+      click_link(edited_user.username)
+    end
 
     click_on 'Редактировать'
 
@@ -16,7 +19,10 @@ RSpec.shared_examples 'edit_user' do
   end
 
   it 'получает сообщение об ошибке не заполнив обязательных полей' do
-    find(:css, '#users-table').click_link(edited_user.username)
+    within('#users-table') do
+      expect(page).to have_content(edited_user.username)
+      click_link(edited_user.username)
+    end
 
     click_on 'Редактировать'
 
@@ -32,12 +38,16 @@ RSpec.describe 'Редактирование пользователя', js: true
   before do
     logged_as(user)
     visit root_path
-    find('li p', text: 'Пользователи').click
+
+    within('.main-sidebar') do
+      click_link('Пользователи')
+    end
   end
 
   context 'Администратор' do
     let(:user) { create(:user, :admin) }
-    let!(:some_user) { create(:user) }
+
+    let_it_be(:some_user) { create(:user) }
 
     context 'свой профиль' do
       let(:edited_user) { user }
@@ -54,11 +64,16 @@ RSpec.describe 'Редактирование пользователя', js: true
 
   context 'Обычный пользователь' do
     let(:user) { create(:user) }
-    let!(:some_user) { create(:user) }
+
+    let_it_be(:some_user) { create(:user) }
 
     it 'не может добавлять и редактировать других пользователей' do
       expect(page).not_to have_content 'Добавить'
-      find(:css, '#users-table').click_link(some_user.username)
+      within('#users-table') do
+        expect(page).to have_content(some_user.username)
+        click_link(some_user.username)
+      end
+
       expect(page).not_to have_content 'Редактировать'
     end
 
