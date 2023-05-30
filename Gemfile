@@ -66,6 +66,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'email_spec', '2.2.0'
   gem 'rack_session_access'
+  gem 'test-prof', '~> 1.0'
   gem 'webdrivers', require: !ENV['SELENIUM_REMOTE_URL']
 end
 

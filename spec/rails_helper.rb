@@ -10,6 +10,7 @@ require 'capybara/rails'
 require 'rack_session_access/capybara'
 require 'email_spec'
 require 'email_spec/rspec'
+require 'test_prof/recipes/rspec/let_it_be'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
