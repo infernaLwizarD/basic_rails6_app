@@ -63,7 +63,7 @@ jobs:
         run: bundle exec rails db:prepare
       # Add or replace test runners here
       - name: Run tests
-        run: bundle exec rspec --order=42 --seed 666666
+        run: bundle exec rspec #--order=42 --seed 666666
       - name: Upload screenshots
         uses: actions/upload-artifact@v3.1.2
         if: failure()
