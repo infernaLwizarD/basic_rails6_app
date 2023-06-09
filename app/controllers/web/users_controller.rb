@@ -28,8 +28,7 @@ class Web::UsersController < Web::ApplicationController
     authorize User
 
     @user = User.new(user_params)
-    @user.save
-    flash[:notice] = 'Пользователь успешно создан'
+    flash[:notice] = 'Пользователь успешно создан' if @user.save
     respond_with @user
   end
 

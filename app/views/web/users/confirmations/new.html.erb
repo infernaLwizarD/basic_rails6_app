@@ -7,7 +7,7 @@
 
     <div class="card-body">
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "web/users/shared/error_messages", resource: resource %>
+        <%= render "web/shared/error_messages", resource: resource %>
 
         <div class="input-group mb-3">
           <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-sm",

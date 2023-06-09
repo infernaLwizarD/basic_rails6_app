@@ -1,7 +1,7 @@
 <%= search_form_for q, class: 'display-flex, ml-2 mr-2' do |f| %>
   <div class="row">
     <div class="col p-1">
-      <%= f.search_field :search_cont, value: params.dig(:q, :search_cont), placeholder: "Поиск", class: 'search-field float-left form-control form-control-sm' %>
+      <%= f.search_field :search_cont, value: params.dig(:q, :search_cont), placeholder: 'Поиск', class: 'search-field float-left form-control form-control-sm' %>
     </div>
     <div class="col p-1">
       <%= f.select(:by_discarded, [['Активные', 'active'], ['Удалённые', 'discarded']], { include_blank: '[Все]', selected: params.dig(:q, :by_discarded) }, { class: 'discarded-field float-left form-control form-control-sm', onchange: 'this.form.submit();' }) %>

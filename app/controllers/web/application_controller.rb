@@ -1,4 +1,6 @@
 class Web::ApplicationController < ApplicationController
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   private
 
   def user_not_authorized
